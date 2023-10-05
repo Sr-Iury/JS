@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site - Contagem</title>
+  <style>
+    body {
+      background-color: black;
+    }
+
+    header {
+      color: white;
+      text-align: center;
+    }
+
+    section {
+      background: white;
+      border-radius: 4px;
+      padding: 12px;
+      width: 400px;
+      margin: auto;
+      box-shadow: 3px 3px 5px black;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- cabeçalho -->
+  <header>
+    <h1>
+      Sistema de contagem dinâmica
+    </h1>
+  </header>
+  <!-- corpo do site -->
+  <section>
+    <div>
+      <p>Inicío: <input type="number" name="inicio" id="txti"></p>
+      <p>fim: <input type="number" name="fim" id="txtf"></p>
+      <p>Passo/Intervalo: <input type="number" name="intervalo" id="txtp"></p>
+
+      <p> <input type="submit" value="contar" onclick="contar()"></p>
+    </div>
+    <!-- div que vai receber a resposta das contagens -->
+    <div id="resposta"></div>
+  </section>
+  <!-- fim do corpo e começo do script do site -->
+  <script>
+    // window.document.body isso é a hierarquia da sentença
+    function contar() {
+      var ini = document.getElementById("txti");
+      var fim = document.getElementById("txtf")
+      var intervalo = document.getElementById("txtp")
+      var resposta = document.getElementById("resposta")
+
+      if (ini.value.length == 0 || fim.value.length == 0 || intervalo.value.length == 0) {
+        resposta.innerHTML = 'Incapapaz de realizar a contagem se qualquer um dos valores for 0'
+      }
+      else {
+        var i = Number(ini.value)
+        var f = Number(fim.value)
+        var p = Number(intervalo.value)
+        if (p <= 0) {
+          window.alert('Passo inválido')
+          p = 1
+        }
+        if (i < f) {
+          //contagem crescente
+          for (var c = i; c <= f; c += p) {
+            resposta.innerHTML += `${c} \u{1F449}`
+          }
+        }
+        else {
+          // contagem decrescente
+          for (var c = f; c >= i; c -= p) {
+            resposta.innerHTML += `${c} \u{1F449}`
+          }
+          }
+          resposta.innerHTML += `${c} \u{1F449}`
+      }
+
+    }
+  </script>
+</body>
+
+</html>
